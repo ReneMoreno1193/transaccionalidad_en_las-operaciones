@@ -2,7 +2,7 @@ CREATE DATABASE inscritos;
 
 USE inscritos;
 
-CREATE TABLE IF NOT EXISTS INSCRITOS (
+CREATE TABLE IF NOT EXISTS INSCRITOS (   id INT PRIMARY KEY AUTO_INCREMENT,
                                          cantidad INT,
                                          fecha DATE,
                                          fuente VARCHAR(100)
@@ -31,7 +31,7 @@ VALUES
 
 
 -- Cantidad total de registros--
-SELECT COUNT(*) AS total_registros
+SELECT COUNT(cantidad) AS total_registros
 FROM INSCRITOS;
 
 
@@ -41,15 +41,15 @@ FROM INSCRITOS;
 
 -- Registros de mayor antiguedad --
 
-SELECT *
+SELECT  ID, fecha
 FROM INSCRITOS
 WHERE fecha = (SELECT MIN(fecha) FROM INSCRITOS);
 
 -- Cuantos inscritos por día
-
 SELECT fecha, SUM(cantidad) AS inscritos_por_dia
 FROM INSCRITOS
 GROUP BY fecha;
+
 
 
 -- ¿Qué día se inscribieron la mayor cantidad de personas y cuántas personas se inscribieron en ese día?--
